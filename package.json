@@ -6,7 +6,8 @@
     "check": "bun tsc -b && bun typo && prettier --check ./src/ --check && eslint --ext .ts,.tsx,.js,.jsx ./src",
     "fmt": "prettier --write ./src",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx ./src",
-    "typo": "cspell \"./src/**\" --gitignore"
+    "typo": "cspell \"./src/**\" --gitignore",
+    "dev:serve": "bun http-server -a localhost -p 5500"
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.5",
