@@ -2,10 +2,18 @@
   "extends": [
     "@tsconfig/strictest/tsconfig.json"
   ],
-  "include": [
-    "src",
-  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
   "exclude": [
     "node_modules",
+    "dist"
   ]
 }
