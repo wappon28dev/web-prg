@@ -3,6 +3,7 @@
     "@tsconfig/strictest/tsconfig.json"
   ],
   "compilerOptions": {
+    "moduleDetection": "force",
     "baseUrl": ".",
     "rootDir": "src",
     "paths": {
