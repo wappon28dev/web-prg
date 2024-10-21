@@ -3,17 +3,18 @@
     "@tsconfig/strictest/tsconfig.json"
   ],
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
     "baseUrl": ".",
+    "rootDir": "src",
     "paths": {
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    "outDir": "dist"
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "eslint.config.mjs"
   ]
 }
