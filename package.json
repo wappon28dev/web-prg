@@ -1,7 +1,7 @@
 {
   "name": "web-prg",
-  "module": "src/index.js",
   "type": "module",
+  "module": "src/index.js",
   "scripts": {
     "check": "bun tsc -b && bun typo && prettier --check ./src/ --check && eslint --ext .ts,.tsx,.js,.jsx ./src",
     "fmt": "prettier --write ./src",
@@ -9,19 +9,19 @@
     "lint": "eslint ./src",
     "dev:serve": "bun http-server -a localhost -p 5500"
   },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^3.8.0",
     "@tsconfig/strictest": "^2.0.5",
     "@types/bun": "latest",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "cspell": "^8.14.4",
-    "@antfu/eslint-config": "^3.8.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-format": "^0.1.2",
     "typescript-eslint": "^8.10.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
   }
 }
