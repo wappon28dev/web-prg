@@ -55,11 +55,11 @@
   </body>
 
   <script>
-    const qNumber = new Array(4); // 問題
-    const aNumber = new Array(4); // 解答
-    let cnt = 0; // 試行回数
+    const qNumber = Array.from({ length: 4 });
+    const aNumber = Array.from({ length: 4 });
+    let cnt = 0;
+
     function init() {
-      // 数字パネル
       document.getElementById("number").innerHTML = "";
       for (let i = 0; i < 10; i++) {
         const number = document.createElement("span");
@@ -69,21 +69,22 @@
         number.ondragstart = dragNumber;
         document.getElementById("number").appendChild(number);
       }
-      // 解答用パネル
+
       document.getElementById("answer").innerHTML = "";
+
       for (let i = 0; i < 4; i++) {
         const answer = document.createElement("span");
-        answer.id = "a_" + i;
+        answer.id = `a_${i}`;
         answer.innerText = 0;
         answer.ondragover = dragOverNumber;
         answer.ondrop = dropNumber;
         document.getElementById("answer").appendChild(answer);
       }
-      // 問題作成
+
       setQuestion();
     }
+
     function setQuestion() {
-      // 数字をシャッフル
       const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       for (let i = 9; i > 0; i--) {
         const j = Math.floor(Math.random() * i);
@@ -91,74 +92,72 @@
         numbers[i] = numbers[j];
         numbers[j] = tempNumber;
       }
-      // 4桁の問題作成
+
       for (let i = 0; i < 4; i++) qNumber[i] = numbers[i];
     }
+
     function dragNumber(event) {
-      // ドラッグした数字を格納
       event.dataTransfer.setData("text", event.target.innerText);
     }
+
     function dropNumber(event) {
-      // 格納された数字を解答パネルにセット
       const number = event.dataTransfer.getData("text");
       event.target.innerText = number;
       event.target.className = "";
     }
+
     function dragOverNumber(event) {
-      // 通常のドラッグ動作をキャンセル
       event.preventDefault();
     }
+
     function check() {
-      // 解答の取得
       let answer = "";
       for (let i = 0; i < 4; i++) {
-        answer += document.getElementById("a_" + i).innerText;
-        aNumber[i] = Number(document.getElementById("a_" + i).innerText);
+        answer += document.getElementById(`a_${i}`).innerText;
+        aNumber[i] = Number(document.getElementById(`a_${i}`).innerText);
       }
-      // ヒット＆ブロー判定
+
       let hit = 0;
       let blow = 0;
       for (let i = 0; i < 4; i++) {
-        if (aNumber.indexOf(qNumber[i]) >= 0) {
-          if (aNumber[i] == qNumber[i]) {
-            // ヒット
+        if (aNumber.includes(qNumber[i])) {
+          if (aNumber[i] === qNumber[i]) {
             hit++;
           } else {
-            // ブロー
             blow++;
           }
         }
       }
-      // 背景色変更
+
       let style = "red";
       if (blow > 0) style = "magenta";
       if (hit > 0) style = "cyan";
-      if (hit == 4) style = "green";
+      if (hit === 4) style = "green";
       for (let i = 0; i < 4; i++) {
-        document.getElementById("a_" + i).className = style;
+        document.getElementById(`a_${i}`).className = style;
       }
-      // ログ表示
+
       cnt++;
       let log = document.getElementById("log").innerHTML;
-      answer = cnt + "回目：[" + answer + "]：";
-      if (hit == 4) {
-        log = answer + "正解！<br>" + log;
+      answer = `${cnt}回目：[${answer}]：`;
+      if (hit === 4) {
+        log = `${answer}正解！<br>${log}`;
       } else {
-        log = answer + hit + "ヒット、" + blow + "ブロー<br>" + log;
+        log = `${answer + hit}ヒット、${blow}ブロー<br>${log}`;
       }
       document.getElementById("log").innerHTML = log;
     }
+
     function reset() {
-      // 解答回数、解答用パネル、ログのリセット
       cnt = 0;
       for (let i = 0; i < 4; i++) {
-        document.getElementById("a_" + i).innerText = 0;
-        document.getElementById("a_" + i).className = "";
+        document.getElementById(`a_${i}`).innerText = 0;
+        document.getElementById(`a_${i}`).className = "";
       }
       document.getElementById("log").innerHTML = "";
     }
+
     function newQuestion() {
-      // 新しい問題をセット
       reset();
       setQuestion();
     }
