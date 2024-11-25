@@ -13,6 +13,7 @@ export default antfu(
         "arrow-body-style": ["error", "as-needed"],
         "no-restricted-imports": ["error", { patterns: ["../*"] }],
         "unused-imports/no-unused-imports": "warn",
+        "style/brace-style": ["error", "1tbs"],
       },
     },
     typescript: {
