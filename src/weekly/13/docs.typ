@@ -123,10 +123,10 @@ P.S. この HTML は正しくないです！！！
   #pad(left: 1em, box(cRect("[ ? ]")))
   ```html </script>```
   #choices[
-    + `document.querySelector(".test").prepend(newElement);`
-    + `document.querySelector(".test").append(newElement);`
-    + `document.querySelector(".child").before(newElement);`
-    + `document.querySelector(".child").after(newElement);`
+    + ```js document.querySelector(".test").prepend(newElement);```
+    + ```js document.querySelector(".test").append(newElement);```
+    + ```js document.querySelector(".child").before(newElement);```
+    + ```js document.querySelector(".child").after(newElement);```
   ]
   #ans[
     #choice(1), #choice(3)
